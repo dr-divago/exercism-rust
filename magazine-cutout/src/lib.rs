@@ -12,11 +12,9 @@ pub fn can_construct_note(magazine: &[&str], note: &[&str]) -> bool {
         *count += 1;
     }
 
-    println!("{:?}", map);
-
     for word_note in note {
-        map.entry(word_note).and_modify(|v| *v -= 1).or_insert(-1);
-        if (*map.get(word_note).unwrap() < 0) {
+        let entry = map.entry(word_note).and_modify(|v| *v -= 1).or_insert(-1);
+        if (*entry < 0) {
             return false;
         }
     }
